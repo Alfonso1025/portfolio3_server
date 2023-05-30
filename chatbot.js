@@ -75,22 +75,21 @@ const getCompletionFromMessages=async (context)=>{
       }
 }
 module.exports = {
-  test : (req, res)=>{
-    console.log(key)
-  },
+  
   
   collectMessages : async (req, res)=>{
     const resolver = Resolver(res)
-  try {
-     const prompt = req.body.message
-     context.push({role : 'user', content: prompt})
-     const response = await getCompletionFromMessages(context)
-     context.push({role : 'assistant', content : response})
-     console.log(response)
-     return resolver.success(response, 'messages_collected')
+    console.log(req.body.message)
+    try {
+       const prompt = req.body.message
+       context.push({role : 'user', content: prompt})
+       const response = await getCompletionFromMessages(context)
+       context.push({role : 'assistant', content : response})
+       console.log(response)
+       return resolver.success(response, 'messages_collected')
   } catch (error) {
-    console.log(error)
-    return resolver.internalServerError(error, error.message)
+       console.log(error)
+       return resolver.internalServerError(error, error.message)
   }
    
   }
