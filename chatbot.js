@@ -109,7 +109,7 @@ module.exports = {
     console.log('this is the message',req.body.message)
     console.log('this is the key', key)
 
-    /* try {
+    try {
        const prompt = req.body.message
        context.push({role : 'user', content: prompt})
        const response = await getCompletionFromMessages(context)
@@ -117,9 +117,9 @@ module.exports = {
        console.log(response)
        return resolver.success(response, 'messages_collected')
   } catch (error) {
-       console.log(error.message)
+       console.log(error)
        return resolver.internalServerError(error, error.message)
-  } */
+  } 
    
   }
 }
